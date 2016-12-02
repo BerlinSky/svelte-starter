@@ -22,14 +22,12 @@ function renderMainFragment$1 ( root, component, target ) {
 	var h1 = document.createElement( 'h1' );
 	h1.setAttribute( 'svelte-1310972675', '' );
 	
-	var text = document.createTextNode( "Have you tried Svelte? It's " );
-	h1.appendChild( text );
+	h1.appendChild( document.createTextNode( "Have you tried Svelte? It's " ) );
 	
 	var text1 = document.createTextNode( root.adjective );
 	h1.appendChild( text1 );
 	
-	var text2 = document.createTextNode( "." );
-	h1.appendChild( text2 );
+	h1.appendChild( document.createTextNode( "." ) );
 	
 	target.appendChild( h1 );
 
@@ -40,10 +38,6 @@ function renderMainFragment$1 ( root, component, target ) {
 
 		teardown: function ( detach ) {
 			if ( detach ) h1.parentNode.removeChild( h1 );
-			
-			text.parentNode.removeChild( text );
-			
-			text2.parentNode.removeChild( text2 );
 		}
 	};
 }
@@ -60,19 +54,19 @@ function Test1 ( options ) {
 	var callbacks = Object.create( null );
 
 	function dispatchObservers ( group, newState, oldState ) {
-		for ( const key in group ) {
+		for ( var key in group ) {
 			if ( !( key in newState ) ) continue;
 
-			const newValue = newState[ key ];
-			const oldValue = oldState[ key ];
+			var newValue = newState[ key ];
+			var oldValue = oldState[ key ];
 
 			if ( newValue === oldValue && typeof newValue !== 'object' ) continue;
 
-			const callbacks = group[ key ];
+			var callbacks = group[ key ];
 			if ( !callbacks ) continue;
 
-			for ( let i = 0; i < callbacks.length; i += 1 ) {
-				const callback = callbacks[i];
+			for ( var i = 0; i < callbacks.length; i += 1 ) {
+				var callback = callbacks[i];
 				if ( callback.__calling ) continue;
 
 				callback.__calling = true;
@@ -92,11 +86,11 @@ function Test1 ( options ) {
 	};
 
 	this.get = function get ( key ) {
-		return state[ key ];
+		return key ? state[ key ] : state;
 	};
 
 	this.set = function set ( newState ) {
-		const oldState = state;
+		var oldState = state;
 		state = Object.assign( {}, oldState, newState );
 		
 		dispatchObservers( observers.immediate, newState, oldState );
@@ -104,32 +98,32 @@ function Test1 ( options ) {
 		dispatchObservers( observers.deferred, newState, oldState );
 	};
 
-	this.observe = function ( key, callback, options = {} ) {
-		const group = options.defer ? observers.deferred : observers.immediate;
+	this.observe = function ( key, callback, options ) {
+		var group = ( options && options.defer ) ? observers.deferred : observers.immediate;
 
 		( group[ key ] || ( group[ key ] = [] ) ).push( callback );
 
-		if ( options.init !== false ) {
+		if ( !options || options.init !== false ) {
 			callback.__calling = true;
 			callback.call( component, state[ key ] );
 			callback.__calling = false;
 		}
 
 		return {
-			cancel () {
-				const index = group[ key ].indexOf( callback );
+			cancel: function () {
+				var index = group[ key ].indexOf( callback );
 				if ( ~index ) group[ key ].splice( index, 1 );
 			}
 		};
 	};
 
 	this.on = function on ( eventName, handler ) {
-		const handlers = callbacks[ eventName ] || ( callbacks[ eventName ] = [] );
+		var handlers = callbacks[ eventName ] || ( callbacks[ eventName ] = [] );
 		handlers.push( handler );
 
 		return {
 			cancel: function () {
-				const index = handlers.indexOf( handler );
+				var index = handlers.indexOf( handler );
 				if ( ~index ) handlers.splice( index, 1 );
 			}
 		};
@@ -170,14 +164,12 @@ function renderMainFragment$2 ( root, component, target ) {
 	var h1 = document.createElement( 'h1' );
 	h1.setAttribute( 'svelte-3917991238', '' );
 	
-	var text = document.createTextNode( "Svelte is so " );
-	h1.appendChild( text );
+	h1.appendChild( document.createTextNode( "Svelte is so " ) );
 	
 	var text1 = document.createTextNode( root.adjective );
 	h1.appendChild( text1 );
 	
-	var text2 = document.createTextNode( "." );
-	h1.appendChild( text2 );
+	h1.appendChild( document.createTextNode( "." ) );
 	
 	target.appendChild( h1 );
 
@@ -188,10 +180,6 @@ function renderMainFragment$2 ( root, component, target ) {
 
 		teardown: function ( detach ) {
 			if ( detach ) h1.parentNode.removeChild( h1 );
-			
-			text.parentNode.removeChild( text );
-			
-			text2.parentNode.removeChild( text2 );
 		}
 	};
 }
@@ -208,19 +196,19 @@ function Test2 ( options ) {
 	var callbacks = Object.create( null );
 
 	function dispatchObservers ( group, newState, oldState ) {
-		for ( const key in group ) {
+		for ( var key in group ) {
 			if ( !( key in newState ) ) continue;
 
-			const newValue = newState[ key ];
-			const oldValue = oldState[ key ];
+			var newValue = newState[ key ];
+			var oldValue = oldState[ key ];
 
 			if ( newValue === oldValue && typeof newValue !== 'object' ) continue;
 
-			const callbacks = group[ key ];
+			var callbacks = group[ key ];
 			if ( !callbacks ) continue;
 
-			for ( let i = 0; i < callbacks.length; i += 1 ) {
-				const callback = callbacks[i];
+			for ( var i = 0; i < callbacks.length; i += 1 ) {
+				var callback = callbacks[i];
 				if ( callback.__calling ) continue;
 
 				callback.__calling = true;
@@ -240,11 +228,11 @@ function Test2 ( options ) {
 	};
 
 	this.get = function get ( key ) {
-		return state[ key ];
+		return key ? state[ key ] : state;
 	};
 
 	this.set = function set ( newState ) {
-		const oldState = state;
+		var oldState = state;
 		state = Object.assign( {}, oldState, newState );
 		
 		dispatchObservers( observers.immediate, newState, oldState );
@@ -252,32 +240,32 @@ function Test2 ( options ) {
 		dispatchObservers( observers.deferred, newState, oldState );
 	};
 
-	this.observe = function ( key, callback, options = {} ) {
-		const group = options.defer ? observers.deferred : observers.immediate;
+	this.observe = function ( key, callback, options ) {
+		var group = ( options && options.defer ) ? observers.deferred : observers.immediate;
 
 		( group[ key ] || ( group[ key ] = [] ) ).push( callback );
 
-		if ( options.init !== false ) {
+		if ( !options || options.init !== false ) {
 			callback.__calling = true;
 			callback.call( component, state[ key ] );
 			callback.__calling = false;
 		}
 
 		return {
-			cancel () {
-				const index = group[ key ].indexOf( callback );
+			cancel: function () {
+				var index = group[ key ].indexOf( callback );
 				if ( ~index ) group[ key ].splice( index, 1 );
 			}
 		};
 	};
 
 	this.on = function on ( eventName, handler ) {
-		const handlers = callbacks[ eventName ] || ( callbacks[ eventName ] = [] );
+		var handlers = callbacks[ eventName ] || ( callbacks[ eventName ] = [] );
 		handlers.push( handler );
 
 		return {
 			cancel: function () {
-				const index = handlers.indexOf( handler );
+				var index = handlers.indexOf( handler );
 				if ( ~index ) handlers.splice( index, 1 );
 			}
 		};
@@ -314,8 +302,7 @@ function renderMainFragment ( root, component, target ) {
 		parent: component
 	});
 	
-	var text = document.createTextNode( "\n  " );
-	div.appendChild( text );
+	div.appendChild( document.createTextNode( "\n  " ) );
 	
 	var test2 = new template.components.Test2({
 		target: div,
@@ -334,8 +321,6 @@ function renderMainFragment ( root, component, target ) {
 			
 			test1.teardown( false );
 			
-			text.parentNode.removeChild( text );
-			
 			test2.teardown( false );
 		}
 	};
@@ -353,19 +338,19 @@ function App ( options ) {
 	var callbacks = Object.create( null );
 
 	function dispatchObservers ( group, newState, oldState ) {
-		for ( const key in group ) {
+		for ( var key in group ) {
 			if ( !( key in newState ) ) continue;
 
-			const newValue = newState[ key ];
-			const oldValue = oldState[ key ];
+			var newValue = newState[ key ];
+			var oldValue = oldState[ key ];
 
 			if ( newValue === oldValue && typeof newValue !== 'object' ) continue;
 
-			const callbacks = group[ key ];
+			var callbacks = group[ key ];
 			if ( !callbacks ) continue;
 
-			for ( let i = 0; i < callbacks.length; i += 1 ) {
-				const callback = callbacks[i];
+			for ( var i = 0; i < callbacks.length; i += 1 ) {
+				var callback = callbacks[i];
 				if ( callback.__calling ) continue;
 
 				callback.__calling = true;
@@ -385,11 +370,11 @@ function App ( options ) {
 	};
 
 	this.get = function get ( key ) {
-		return state[ key ];
+		return key ? state[ key ] : state;
 	};
 
 	this.set = function set ( newState ) {
-		const oldState = state;
+		var oldState = state;
 		state = Object.assign( {}, oldState, newState );
 		
 		dispatchObservers( observers.immediate, newState, oldState );
@@ -402,32 +387,32 @@ function App ( options ) {
 		}
 	};
 
-	this.observe = function ( key, callback, options = {} ) {
-		const group = options.defer ? observers.deferred : observers.immediate;
+	this.observe = function ( key, callback, options ) {
+		var group = ( options && options.defer ) ? observers.deferred : observers.immediate;
 
 		( group[ key ] || ( group[ key ] = [] ) ).push( callback );
 
-		if ( options.init !== false ) {
+		if ( !options || options.init !== false ) {
 			callback.__calling = true;
 			callback.call( component, state[ key ] );
 			callback.__calling = false;
 		}
 
 		return {
-			cancel () {
-				const index = group[ key ].indexOf( callback );
+			cancel: function () {
+				var index = group[ key ].indexOf( callback );
 				if ( ~index ) group[ key ].splice( index, 1 );
 			}
 		};
 	};
 
 	this.on = function on ( eventName, handler ) {
-		const handlers = callbacks[ eventName ] || ( callbacks[ eventName ] = [] );
+		var handlers = callbacks[ eventName ] || ( callbacks[ eventName ] = [] );
 		handlers.push( handler );
 
 		return {
 			cancel: function () {
-				const index = handlers.indexOf( handler );
+				var index = handlers.indexOf( handler );
 				if ( ~index ) handlers.splice( index, 1 );
 			}
 		};
