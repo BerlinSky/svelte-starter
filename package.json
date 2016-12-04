@@ -7,13 +7,16 @@
     "express": "^4.14.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.18.2",
     "rollup": "^0.36.4",
-    "rollup-plugin-svelte": "^1.0.0"
+    "rollup-plugin-svelte": "^1.0.0",
+    "rollup-stream": "^1.14.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "build": "rollup -c"
+    "start": "gulp",
+    "build": "gulp rollup",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "EmilTholin",
