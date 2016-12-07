@@ -3,21 +3,30 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "dependencies": {},
+  "dependencies": {
+    "svelte": "^1.1.3"
+  },
   "devDependencies": {
-    "browser-sync": "^2.18.2",
-    "gulp": "^3.9.1",
-    "rollup": "^0.36.4",
-    "rollup-plugin-svelte": "^1.0.0",
-    "rollup-stream": "^1.14.0",
-    "vinyl-source-stream": "^1.1.0"
+    "babel-core": "^6.18.2",
+    "babel-loader": "6.2.8",
+    "babel-preset-es2015": "^6.18.0",
+    "clean-webpack-plugin": "^0.1.14",
+    "find-cache-dir": "^0.1.1",
+    "html-webpack-plugin": "^2.24.1",
+    "svelte-loader": "^1.0.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-merge": "^1.0.2"
   },
   "scripts": {
-    "start": "gulp",
-    "build": "gulp rollup",
+    "start": "webpack-dev-server",
+    "build": "NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "svelte",
+    "boilerplate"
+  ],
   "author": "EmilTholin",
   "license": "MIT"
 }
