@@ -1,7 +1,7 @@
 svelte-test
 =====================
 
-Browsersync Svelte boilerplate with a nested components example.
+Svelte boilerplate with a nested components example.
 
 ### Try the example
 
