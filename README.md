@@ -16,5 +16,3 @@ open http://localhost:8080
 ```
 npm run build
 ```
-
-![Screenshot](http://i.giphy.com/3o7TKs6mw9ZVkvl7yw.gif)
