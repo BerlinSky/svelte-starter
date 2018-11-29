@@ -11,7 +11,7 @@ npm start
 open http://localhost:8080
 ```
 
-### Build a production-ready JavaScript-bundle
+### Build production assets
 
 ```
 npm run build
