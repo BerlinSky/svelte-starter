@@ -48,14 +48,13 @@ module.exports = {
                 options: {
                   // Emitting the CSS allows webpack to handle url(...) in the style part of the component.
                   emitCss: true,
-                  legacy: true,
-                  hotReload: isDev
+                  legacy: true
                 }
               }
             ]
           },
           {
-            test: /\.js$/,
+            test: /\.m?js$/,
             // Babel must transpile svelte helper files for older browsers.
             exclude: /node_modules\/(?!svelte)/,
             use: babelLoader
@@ -103,7 +102,7 @@ module.exports = {
     ]
   },
   plugins: [
-    !isDev && new CleanWebpackPlugin(['build'], { verbose: false }),
+    !isDev && new CleanWebpackPlugin({ verbose: false }),
     new FriendlyErrorsWebpackPlugin(),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development', // Use 'development' unless process.env.NODE_ENV is defined.
