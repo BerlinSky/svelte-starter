@@ -48,6 +48,7 @@ module.exports = {
                 options: {
                   // Emitting the CSS allows webpack to handle url(...) in the style part of the component.
                   emitCss: true,
+                  legacy: true,
                   hotReload: isDev
                 }
               }
