@@ -1,6 +1,11 @@
-import App from './components/App.svelte';
-import './styles.css';
-
-const app = new App({
-  target: document.querySelector('main')
-});
+// import App from './components/App.svelte';
+import App from './App.svelte';
+import './main.css';              
+                             
+const app = new App({        
+	target: document.body,    
+	props: {                 
+		name: 'world'           
+	}                      
+});                    
+                       
