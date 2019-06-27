@@ -1,11 +1,19 @@
 <script>
-	export let name;
-</script>
-
-<style>
-	h1 {
-		color: purple;
-	}   
-</style>
-     
-<h1>Hello {name}!</h1>
+	import Product from "./components/Product.svelte";
+               
+	function addToCart(event) {                       
+		console.log(event);          
+	}                            
+                     
+	function deleteFromCart(event) {          
+		console.log(event);                              
+	}                                
+</script>                                          
+                                                   
+<Product                                           
+  productTitle="A Book"                            
+  on:add-to-cart={addToCart}                       
+	on:delete-from-cart={deleteFromCart}               
+/>                                                     
+                                                    
+                                                   
